@@ -10,3 +10,16 @@
   position: relative;
   margin-bottom: 25px;
 }
+
+.log-out-block {
+  width: 180px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}

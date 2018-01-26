@@ -2,6 +2,8 @@ defmodule Discuss.TopicController do
   use Discuss.Web, :controller
   alias Discuss.Topic
 
+  plug Discuss.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
+
   def index(conn, _params) do
     render conn, "index.html", topics: Repo.all(Topic)
   end
@@ -10,8 +12,11 @@ defmodule Discuss.TopicController do
     Topic.changeset(%Topic{}) |> render_new_with_change_set(conn)
   end
 
-  def create(conn, %{"topic" => topic}) do
-    Topic.changeset(%Topic{}, topic)
+  def create(%{assigns: %{user: user}} = conn, %{"topic" => topic}) do
+    IO.inspect conn
+    user
+    |> build_assoc(:topics)
+    |> Topic.changeset(topic)
     |> Repo.insert
     |> render_new_success_or_error_response(conn)
   end

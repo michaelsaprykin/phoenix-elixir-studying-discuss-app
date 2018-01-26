@@ -32,7 +32,7 @@ defmodule Discuss.Router do
     get "/signout", AuthController, :signout
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
-    
+
   end
 
   # Other scopes may use custom stacks.

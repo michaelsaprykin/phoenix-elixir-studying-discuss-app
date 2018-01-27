@@ -1,0 +1,5 @@
+<div>
+  <h3>
+    <%= @topic.title %>
+  </h3>
+</div>

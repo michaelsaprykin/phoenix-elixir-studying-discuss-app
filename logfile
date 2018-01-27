@@ -5,3 +5,7 @@ LOG:  autovacuum launcher started
 FATAL:  role "postgres" does not exist
 FATAL:  role "postgres" does not exist
 FATAL:  role "postgres" does not exist
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

@@ -10,7 +10,7 @@ defmodule Discuss.CommentsChannel do
     topic =
       Topic
       |> Repo.get(topic_id)
-      |> Repo.preload(:comments)
+      |> Repo.preload(comments: [:user])
 
     {:ok, %{comments: topic.comments}, assign(socket, :topic, topic)}
   end
@@ -20,13 +20,14 @@ defmodule Discuss.CommentsChannel do
         %{"content" => content},
         %{
           assigns: %{
-            topic: topic
+            topic: topic,
+            user_id: user_id
           }
         } = socket
       ) do
     changeset =
       topic
-      |> build_assoc(:comments)
+      |> build_assoc(:comments, user_id: user_id)
       |> Comment.changeset(%{content: content})
 
     case Repo.insert(changeset) do

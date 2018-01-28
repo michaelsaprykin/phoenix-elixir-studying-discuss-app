@@ -2,17 +2,18 @@
   <h5>
     <%= @topic.title %>
   </h5>
-  <div class="input-field">
-    <textarea class="materialize-textarea">
-    </textarea>
-    <button class="btn">
-        Submit comment
-    </button>
-    <p>Comments: </p>
-    <ul class="collection">
-
-    </ul>
-  </div>
+  <%= if @conn.assigns.user do %>
+      <div class="input-field">
+        <textarea class="materialize-textarea">
+        </textarea>
+        <button class="btn">
+            Submit comment
+        </button>
+        <p>Comments: </p>
+        <ul class="collection">
+        </ul>
+      </div>
+  <% end %>
 </div>
 
 

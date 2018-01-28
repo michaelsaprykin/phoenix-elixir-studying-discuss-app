@@ -9,15 +9,18 @@ const renderComments = ({comments}) => {
         comments.map(comment => `
         <li class="collection-item">
             ${comment.content}
+            <div class="secondary-content">
+                ${comment.user ? comment.user.email : 'Anonymous'}
+            </div>
         </li> 
-    `).join('');
+    `).reverse().join('');
 };
 
-const commentTemplate = ({ content }) => `
+const commentTemplate = ({ content }) => (`
         <li class="collection-item">
             ${content}
         </li> 
-`;
+`);
 
 const renderNewComment = ({ comment }) => {
     document.querySelector('.collection').innerHTML += commentTemplate(comment);
@@ -38,7 +41,6 @@ export const createSocket = topicId => {
                 channel.push('comment:add', {content});
                 textArea.value = '';
             });
-
         channel.on(`comments:${topicId}:new`, renderNewComment);
     }
 };
